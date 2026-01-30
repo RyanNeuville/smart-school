@@ -1,0 +1,70 @@
+package com.xmind.smartschool.models;
+
+public class Matiere {
+    private Long id;
+    private String code;
+    private String nom;
+    private String coefficient;
+    private String description;
+
+    public Matiere() {
+    }
+
+    public Matiere(Long id, String code, String nom, String coefficient, String description) {
+        this.id = id;
+        this.code = code;
+        this.nom = nom;
+        this.coefficient = coefficient;
+        this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getCoefficient() {
+        return coefficient;
+    }
+
+    public void setCoefficient(String coefficient) {
+        this.coefficient = coefficient;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Matiere [id=" + id
+                + ", code=" + code
+                + ", nom=" + nom
+                + ", coefficient=" + coefficient
+                + ", description=" + description
+                + "]";
+    }
+}
