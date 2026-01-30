@@ -3,17 +3,17 @@ package com.xmind.smartschool.models;
 public class Matiere {
     private Long id;
     private String code;
-    private String nom;
+    private String libelle;
     private String coefficient;
     private String description;
 
     public Matiere() {
     }
 
-    public Matiere(Long id, String code, String nom, String coefficient, String description) {
+    public Matiere(Long id, String code, String libelle, String coefficient, String description) {
         this.id = id;
         this.code = code;
-        this.nom = nom;
+        this.libelle = libelle;
         this.coefficient = coefficient;
         this.description = description;
     }
@@ -34,12 +34,12 @@ public class Matiere {
         this.code = code;
     }
 
-    public String getNom() {
-        return nom;
+    public String getLibelle() {
+        return libelle;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
     public String getCoefficient() {
@@ -62,7 +62,7 @@ public class Matiere {
     public String toString() {
         return "Matiere [id=" + id
                 + ", code=" + code
-                + ", nom=" + nom
+                + ", libelle=" + libelle
                 + ", coefficient=" + coefficient
                 + ", description=" + description
                 + "]";
