@@ -15,6 +15,9 @@ public class EtudiantListItemDTO {
     public EtudiantListItemDTO() {
     }
 
+    /*
+     * Constructor to create a new EtudiantListItemDTO object.
+     */
     public EtudiantListItemDTO(String matricule, String nomPrenom, String moyenneAnnuelle, Statut statut) {
         this.matricule = matricule;
         this.nomPrenom = nomPrenom;
@@ -22,6 +25,9 @@ public class EtudiantListItemDTO {
         this.statut = statut;
     }
 
+    /*
+     * Getters & Setters
+     */
     public String getMatricule() {
         return matricule;
     }
@@ -54,6 +60,9 @@ public class EtudiantListItemDTO {
         this.statut = statut;
     }
 
+    /*
+     * toString method to print the object.
+     */
     @Override
     public String toString() {
         return "EtudiantListItemDTO [matricule=" + matricule

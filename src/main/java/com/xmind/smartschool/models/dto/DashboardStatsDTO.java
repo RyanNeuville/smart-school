@@ -9,9 +9,13 @@ public class DashboardStatsDTO {
     private double tauxReussite;
     private String nomBaseDeDonnees;
 
+    
     public DashboardStatsDTO() {
     }
 
+    /*
+     * Constructor to create a new DashboardStatsDTO object.
+     */
     public DashboardStatsDTO(int nombreTotalEtudiants, int nombreEtudiantsActifs, double moyenneDeLaPromo,
             String topStudent, String flopStudent, double tauxReussite, String nomBaseDeDonnees) {
         this.nombreTotalEtudiants = nombreTotalEtudiants;
@@ -23,6 +27,9 @@ public class DashboardStatsDTO {
         this.nomBaseDeDonnees = nomBaseDeDonnees;
     }
 
+    /*
+     * Getters & Setters
+     */
     public int getNombreTotalEtudiants() {
         return nombreTotalEtudiants;
     }
@@ -79,6 +86,9 @@ public class DashboardStatsDTO {
         this.nomBaseDeDonnees = nomBaseDeDonnees;
     }
 
+    /*
+     * toString method to print the object.
+     */
     @Override
     public String toString() {
         return "DashboardStatsDTO [nombreTotalEtudiants=" + nombreTotalEtudiants

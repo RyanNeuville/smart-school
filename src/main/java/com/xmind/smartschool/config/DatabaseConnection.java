@@ -9,6 +9,9 @@ public class DatabaseConnection {
     private static DatabaseConnection instance = null;
     private Connection connection = null;
 
+    /*
+     * Private constructor to prevent instantiation from other classes.
+     */
     private DatabaseConnection() {
         try {
             Class.forName(Constants.DRIVER);
@@ -21,6 +24,9 @@ public class DatabaseConnection {
         }
     }
 
+    /*
+     * Get the singleton instance of the DatabaseConnection class.
+     */
     public static synchronized DatabaseConnection getInstance() {
         try {
             if (instance == null || instance.getConnection() == null || instance.getConnection().isClosed()) {
@@ -33,10 +39,16 @@ public class DatabaseConnection {
         return instance;
     }
 
+    /*
+     * Get the database connection.
+     */
     public Connection getConnection() {
         return connection;
     }
 
+    /*
+     * Close the database connection.
+     */
     public void closeConnection() {
         if (connection != null) {
             try {

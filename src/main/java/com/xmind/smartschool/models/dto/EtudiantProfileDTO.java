@@ -20,6 +20,9 @@ public class EtudiantProfileDTO {
     public EtudiantProfileDTO() {
     }
 
+    /*
+     * Constructor to create a new EtudiantProfileDTO object.
+     */
     public EtudiantProfileDTO(String nomComplet, String matricule, String niveau, int age, Statut statut,
             double moyenneGenerale, String rangPromo, int nombreAbsences,  String email) {
         this.nomComplet = nomComplet;
@@ -33,6 +36,9 @@ public class EtudiantProfileDTO {
         this.email = email;
     }
 
+    /*
+     * Getters & Setters
+     */
     public String getNomComplet() {
         return nomComplet;
     }
@@ -105,6 +111,9 @@ public class EtudiantProfileDTO {
         this.email = email;
     }
 
+    /*
+     * toString method to print the object.
+     */
     @Override
     public String toString() {
         return "EtudiantProfileDTO [nomComplet=" + nomComplet

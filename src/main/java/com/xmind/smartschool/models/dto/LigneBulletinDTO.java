@@ -12,6 +12,9 @@ public class LigneBulletinDTO {
     public LigneBulletinDTO() {
     }
 
+    /*
+     * Constructor to create a new LigneBulletinDTO object.
+     */
     public LigneBulletinDTO(String codeMatiere, String libelleMatiere, int coefficient, double noteObtenue,
             double poidsTotal, String appreciation, boolean estValide) {
         this.codeMatiere = codeMatiere;
@@ -23,6 +26,9 @@ public class LigneBulletinDTO {
         this.estValide = estValide;
     }
 
+    /*
+     * Getters & Setters
+     */
     public String getCodeMatiere() {
         return codeMatiere;
     }
@@ -79,6 +85,9 @@ public class LigneBulletinDTO {
         this.estValide = estValide;
     }
 
+    /*
+     * toString method to print the object.
+     */
     @Override
     public String toString() {
         return "LigneBulletinDTO [codeMatiere=" + codeMatiere

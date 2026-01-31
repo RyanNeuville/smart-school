@@ -12,6 +12,9 @@ public class SaisieNoteDTO {
     public SaisieNoteDTO() {
     }
 
+    /*
+     * Constructor to create a new SaisieNoteDTO object.
+     */
     public SaisieNoteDTO(String matriculeEtudiant, String codeMatiere, EvaluationType typeEvaluation,
             double valeurNote, String commentaire) {
         this.matriculeEtudiant = matriculeEtudiant;
@@ -61,6 +64,9 @@ public class SaisieNoteDTO {
         this.commentaire = commentaire;
     }
 
+    /*
+     * toString method to print the object.
+     */
     @Override
     public String toString() {
         return "SaisieNoteDTO [matriculeEtudiant=" + matriculeEtudiant

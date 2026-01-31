@@ -16,6 +16,9 @@ public class BulletinDTO {
     public BulletinDTO() {
     }
 
+    /*
+     * Constructor to create a new BulletinDTO object.
+     */
     public BulletinDTO(EtudiantProfileDTO etudiantInfo, List<LigneBulletinDTO> lignes, double totalPoints,
             double totalCoefs,
             double moyenneTrimestrielle, String mention, String decisionConseil, LocalDate dateGeneration) {
@@ -29,6 +32,9 @@ public class BulletinDTO {
         this.dateGeneration = dateGeneration;
     }
 
+    /*
+     * Getters & Setters
+     */
     public EtudiantProfileDTO getEtudiantInfo() {
         return etudiantInfo;
     }
@@ -93,6 +99,9 @@ public class BulletinDTO {
         this.dateGeneration = dateGeneration;
     }
 
+    /*
+     * toString method to print the object.
+     */
     @Override
     public String toString() {
         return "BulletinDTO [etudiantInfo=" + etudiantInfo
