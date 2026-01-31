@@ -10,7 +10,7 @@ public class Etudiant {
         SUSPENDU
     }
 
-    private Long id;
+    private String id;
     private String matricule;
     private String nom;
     private String prenom;
@@ -23,7 +23,7 @@ public class Etudiant {
     public Etudiant() {
     }
 
-    public Etudiant(Long id, String matricule, String nom, String prenom, LocalDate dateNaissance, String email,
+    public Etudiant(String id, String matricule, String nom, String prenom, LocalDate dateNaissance, String email,
             String telephone, LocalDateTime dateInscription, Statut statut) {
         this.id = id;
         this.matricule = matricule;
@@ -36,11 +36,11 @@ public class Etudiant {
         this.statut = statut;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

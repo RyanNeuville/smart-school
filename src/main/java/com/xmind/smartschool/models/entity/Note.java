@@ -3,17 +3,18 @@ package com.xmind.smartschool.models.entity;
 import java.time.LocalDate;
 
 public class Note {
-    private Long id;
+    private String id;
     private Double valeur;
     private String commentaire;
     private LocalDate dateSaisie;
-    private Long etudiantId;
-    private Long evaluationId;
+    private String etudiantId;
+    private String evaluationId;
 
     public Note() {
     }
 
-    public Note(Long id, Double valeur, String commentaire, LocalDate dateSaisie, Long etudiantId, Long evaluationId) {
+    public Note(String id, Double valeur, String commentaire, LocalDate dateSaisie, String etudiantId,
+            String evaluationId) {
         this.id = id;
         this.valeur = valeur;
         this.commentaire = commentaire;
@@ -22,11 +23,11 @@ public class Note {
         this.evaluationId = evaluationId;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -54,19 +55,19 @@ public class Note {
         this.dateSaisie = dateSaisie;
     }
 
-    public Long getEtudiantId() {
+    public String getEtudiantId() {
         return etudiantId;
     }
 
-    public void setEtudiantId(Long etudiantId) {
+    public void setEtudiantId(String etudiantId) {
         this.etudiantId = etudiantId;
     }
 
-    public Long getEvaluationId() {
+    public String getEvaluationId() {
         return evaluationId;
     }
 
-    public void setEvaluationId(Long evaluationId) {
+    public void setEvaluationId(String evaluationId) {
         this.evaluationId = evaluationId;
     }
 

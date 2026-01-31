@@ -11,7 +11,7 @@ public class Evaluation {
         AUTRE
     }
 
-    private Long id;
+    private String id;
     private EvaluationType type;
     private Float poids;
     private Long matiereId;
@@ -19,18 +19,18 @@ public class Evaluation {
     public Evaluation() {
     }
 
-    public Evaluation(Long id, EvaluationType type, Float poids, Long matiereId) {
+    public Evaluation(String id, EvaluationType type, Float poids, Long matiereId) {
         this.id = id;
         this.type = type;
         this.poids = poids;
         this.matiereId = matiereId;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

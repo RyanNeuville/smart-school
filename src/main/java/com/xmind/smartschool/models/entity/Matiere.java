@@ -1,7 +1,7 @@
 package com.xmind.smartschool.models.entity;
 
 public class Matiere {
-    private Long id;
+    private String id;
     private String code;
     private String libelle;
     private String coefficient;
@@ -10,7 +10,7 @@ public class Matiere {
     public Matiere() {
     }
 
-    public Matiere(Long id, String code, String libelle, String coefficient, String description) {
+    public Matiere(String id, String code, String libelle, String coefficient, String description) {
         this.id = id;
         this.code = code;
         this.libelle = libelle;
@@ -18,11 +18,11 @@ public class Matiere {
         this.description = description;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
