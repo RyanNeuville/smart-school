@@ -15,14 +15,13 @@ public class EtudiantProfileDTO {
     private double moyenneGenerale;
     private String rangPromo;
     private int nombreAbsences;
-    private String menttion;
     private String email;
 
     public EtudiantProfileDTO() {
     }
 
     public EtudiantProfileDTO(String nomComplet, String matricule, String niveau, int age, Statut statut,
-            double moyenneGenerale, String rangPromo, int nombreAbsences, String menttion, String email) {
+            double moyenneGenerale, String rangPromo, int nombreAbsences,  String email) {
         this.nomComplet = nomComplet;
         this.matricule = matricule;
         this.niveau = niveau;
@@ -31,7 +30,6 @@ public class EtudiantProfileDTO {
         this.moyenneGenerale = moyenneGenerale;
         this.rangPromo = rangPromo;
         this.nombreAbsences = nombreAbsences;
-        this.menttion = menttion;
         this.email = email;
     }
 
@@ -99,14 +97,6 @@ public class EtudiantProfileDTO {
         this.nombreAbsences = nombreAbsences;
     }
 
-    public String getMenttion() {
-        return menttion;
-    }
-
-    public void setMenttion(String menttion) {
-        this.menttion = menttion;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -125,7 +115,6 @@ public class EtudiantProfileDTO {
                 + ", moyenneGenerale=" + moyenneGenerale
                 + ", rangPromo=" + rangPromo
                 + ", nombreAbsences=" + nombreAbsences
-                + ", menttion=" + menttion
                 + ", email=" + email
                 + "]";
     }
