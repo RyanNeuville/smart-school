@@ -1,21 +1,29 @@
 package com.xmind.smartschool.models;
 
 public class Evaluation {
+    public enum Type {
+        EXAMEN,
+        DEVOIR,
+        CONTROLE,
+        PARTIEL,
+        TRAVAUX_DIRIGES,
+        TRAVAUX_PRATIQUES,
+        AUTRE
+    }
+
     private Long id;
-    private String type;
+    private Type type;
     private Float poids;
     private Long matiereId;
-    private Long etudiantId;
 
     public Evaluation() {
     }
 
-    public Evaluation(Long id, String type, Float poids, Long matiereId, Long etudiantId) {
+    public Evaluation(Long id, Type type, Float poids, Long matiereId) {
         this.id = id;
         this.type = type;
         this.poids = poids;
         this.matiereId = matiereId;
-        this.etudiantId = etudiantId;
     }
 
     public Long getId() {
@@ -26,11 +34,11 @@ public class Evaluation {
         this.id = id;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
@@ -50,21 +58,12 @@ public class Evaluation {
         this.matiereId = matiereId;
     }
 
-    public Long getEtudiantId() {
-        return etudiantId;
-    }
-
-    public void setEtudiantId(Long etudiantId) {
-        this.etudiantId = etudiantId;
-    }
-
     @Override
     public String toString() {
         return "Evaluation [id=" + id
                 + ", type=" + type
                 + ", poids=" + poids
                 + ", matiereId=" + matiereId
-                + ", etudiantId=" + etudiantId
                 + "]";
     }
 }
