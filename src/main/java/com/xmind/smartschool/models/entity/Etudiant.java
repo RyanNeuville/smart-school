@@ -3,6 +3,9 @@ package com.xmind.smartschool.models.entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/*
+ * Entity class to represent an Etudiant.
+ */
 public class Etudiant {
     public enum Statut {
         ACTIF,
@@ -20,6 +23,9 @@ public class Etudiant {
     private LocalDateTime dateInscription;
     private Statut statut;
 
+    /*
+     * Constructors to create a new Etudiant object.
+     */
     public Etudiant() {
     }
 
@@ -36,6 +42,9 @@ public class Etudiant {
         this.statut = statut;
     }
 
+    /*
+     * Getters & Setters
+     */
     public String getId() {
         return id;
     }
@@ -108,6 +117,9 @@ public class Etudiant {
         this.statut = statut;
     }
 
+    /*
+     * toString method to print the object.
+     */
     @Override
     public String toString() {
         return "Etudiant [id=" + id

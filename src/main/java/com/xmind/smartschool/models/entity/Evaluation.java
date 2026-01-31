@@ -1,5 +1,8 @@
 package com.xmind.smartschool.models.entity;
 
+/*
+ * Entity class to represent an Evaluation.
+ */
 public class Evaluation {
     public enum EvaluationType {
         EXAMEN,
@@ -16,6 +19,9 @@ public class Evaluation {
     private Float poids;
     private Long matiereId;
 
+    /*
+     * Constructors to create a new Evaluation object.
+     */
     public Evaluation() {
     }
 
@@ -26,6 +32,9 @@ public class Evaluation {
         this.matiereId = matiereId;
     }
 
+    /*
+     * Getters & Setters
+     */
     public String getId() {
         return id;
     }
@@ -58,6 +67,9 @@ public class Evaluation {
         this.matiereId = matiereId;
     }
 
+    /*
+     * toString method to print the object.
+     */
     @Override
     public String toString() {
         return "Evaluation [id=" + id

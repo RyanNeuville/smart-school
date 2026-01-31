@@ -2,6 +2,9 @@ package com.xmind.smartschool.models.entity;
 
 import java.time.LocalDate;
 
+/*
+ * Entity class to represent a Note.
+ */
 public class Note {
     private String id;
     private Double valeur;
@@ -10,6 +13,9 @@ public class Note {
     private String etudiantId;
     private String evaluationId;
 
+    /*
+     * Constructors to create a new Note object.
+     */
     public Note() {
     }
 
@@ -23,6 +29,9 @@ public class Note {
         this.evaluationId = evaluationId;
     }
 
+    /*
+     * Getters & Setters
+     */
     public String getId() {
         return id;
     }
@@ -71,6 +80,9 @@ public class Note {
         this.evaluationId = evaluationId;
     }
 
+    /*
+     * toString method to print the object.
+     */
     @Override
     public String toString() {
         return "Note [id=" + id

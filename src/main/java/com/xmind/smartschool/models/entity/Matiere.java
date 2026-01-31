@@ -1,5 +1,8 @@
 package com.xmind.smartschool.models.entity;
 
+/*
+ * Entity class to represent a Matiere.
+ */
 public class Matiere {
     private String id;
     private String code;
@@ -7,6 +10,9 @@ public class Matiere {
     private String coefficient;
     private String description;
 
+    /*
+     * Constructors to create a new Matiere object.
+     */
     public Matiere() {
     }
 
@@ -18,6 +24,9 @@ public class Matiere {
         this.description = description;
     }
 
+    /*
+     * Getters & Setters
+     */
     public String getId() {
         return id;
     }
@@ -58,6 +67,9 @@ public class Matiere {
         this.description = description;
     }
 
+    /*
+     * toString method to print the object.
+     */
     @Override
     public String toString() {
         return "Matiere [id=" + id
