@@ -1,4 +1,4 @@
-package com.xmind.smartschool.models;
+package com.xmind.smartschool.models.entity;
 
 public class Evaluation {
     public enum Type {

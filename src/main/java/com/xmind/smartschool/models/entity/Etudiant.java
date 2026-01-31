@@ -1,4 +1,4 @@
-package com.xmind.smartschool.models;
+package com.xmind.smartschool.models.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
