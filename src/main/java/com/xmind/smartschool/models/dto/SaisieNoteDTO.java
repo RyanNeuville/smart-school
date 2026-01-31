@@ -9,9 +9,11 @@ public class SaisieNoteDTO {
     private double valeurNote;
     private String commentaire;
 
-    public SaisieNoteDTO(){}
-    
-    public SaisieNoteDTO(String matriculeEtudiant, String codeMatiere, EvaluationType typeEvaluation, double valeurNote, String commentaire){
+    public SaisieNoteDTO() {
+    }
+
+    public SaisieNoteDTO(String matriculeEtudiant, String codeMatiere, EvaluationType typeEvaluation,
+            double valeurNote, String commentaire) {
         this.matriculeEtudiant = matriculeEtudiant;
         this.codeMatiere = codeMatiere;
         this.typeEvaluation = typeEvaluation;
