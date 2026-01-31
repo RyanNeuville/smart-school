@@ -1,4 +1,4 @@
-package com.xmind;
+package com.xmind.smartschool;
 
 /**
  * Hello world!
