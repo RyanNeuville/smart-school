@@ -1,7 +1,7 @@
 package com.xmind.smartschool.models.entity;
 
 public class Evaluation {
-    public enum Type {
+    public enum EvaluationType {
         EXAMEN,
         DEVOIR,
         CONTROLE,
@@ -12,14 +12,14 @@ public class Evaluation {
     }
 
     private Long id;
-    private Type type;
+    private EvaluationType type;
     private Float poids;
     private Long matiereId;
 
     public Evaluation() {
     }
 
-    public Evaluation(Long id, Type type, Float poids, Long matiereId) {
+    public Evaluation(Long id, EvaluationType type, Float poids, Long matiereId) {
         this.id = id;
         this.type = type;
         this.poids = poids;
@@ -34,11 +34,11 @@ public class Evaluation {
         this.id = id;
     }
 
-    public Type getType() {
+    public EvaluationType getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(EvaluationType type) {
         this.type = type;
     }
 
