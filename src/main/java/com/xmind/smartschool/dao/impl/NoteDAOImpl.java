@@ -19,7 +19,7 @@ public class NoteDAOImpl implements INoteDAO {
     @Override
     public List<Note> findByEtudiantId(String etudiantId) {
         List<Note> notes = new ArrayList<>();
-        String query = "SELECT * FROM note WHERE etudiant_id = ?";
+        String query = "SELECT * FROM notes WHERE etudiant_id = ?";
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
                 PreparedStatement pstmt = connection.prepareStatement(query)) {
 

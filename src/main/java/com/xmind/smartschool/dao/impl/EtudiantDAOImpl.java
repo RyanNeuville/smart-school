@@ -20,7 +20,7 @@ public class EtudiantDAOImpl implements IEtudiantDAO {
 
     @Override
     public Optional<Etudiant> findByMatricule(String matricule) {
-        String query = "SELECT * FROM etudiant WHERE matricule = ?";
+        String query = "SELECT * FROM etudiants WHERE matricule = ?";
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
                 PreparedStatement pstmt = connection.prepareStatement(query)) {
 
@@ -40,7 +40,7 @@ public class EtudiantDAOImpl implements IEtudiantDAO {
     @Override
     public List<Etudiant> findAll() {
         List<Etudiant> etudiants = new ArrayList<>();
-        String query = "SELECT * FROM etudiant";
+        String query = "SELECT * FROM etudiants";
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
                 PreparedStatement pstmt = connection.prepareStatement(query);
                 ResultSet rs = pstmt.executeQuery()) {
