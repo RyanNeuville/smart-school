@@ -66,7 +66,8 @@ public class DashboardView {
             System.out.println("1. Lister les étudiants");
             System.out.println("2. Ajouter un étudiant");
             System.out.println("3. Rechercher un profil");
-            System.out.println("4. Retour");
+            System.out.println("4. Voir les notes");
+            System.out.println("5. Retour");
             System.out.println();
 
             int choice = ConsoleInteract.readInt("Votre choix");
@@ -82,10 +83,52 @@ public class DashboardView {
                     searchStudent();
                     break;
                 case 4:
+                    viewStudentNotes();
+                    break;
+                case 5:
                     back = true;
                     break;
             }
         }
+    }
+
+    private void viewStudentNotes() {
+        String matricule = ConsoleInteract.readString("Matricule de l'étudiant");
+        var profileOpt = etudiantService.getEtudiantProfile(matricule);
+
+        if (profileOpt.isEmpty()) {
+            System.out.println(TerminalStyle.RED + "Étudiant introuvable." + TerminalStyle.RESET);
+            ConsoleInteract.pause();
+            return;
+        }
+
+        var etudiant = etudiantService.getAllEtudiants().stream()
+                .filter(e -> e.getMatricule().equals(matricule)).findFirst().orElseThrow();
+
+        List<Note> notes = noteService.getNotesByEtudiant(etudiant.getId());
+
+        if (notes.isEmpty()) {
+            System.out.println(TerminalStyle.YELLOW + "Aucune note pour cet étudiant." + TerminalStyle.RESET);
+        } else {
+            ConsoleInteract.printHeader(
+                    "NOTES DE " + etudiant.getPrenom().toUpperCase() + " " + etudiant.getNom().toUpperCase());
+            String[] headers = { "Matière/Eval", "Note", "Commentaire" };
+            List<String[]> rows = notes.stream().map(n -> {
+                Optional<Evaluation> eval = evaluationService.getEvaluationById(n.getEvaluationId());
+                String evalName = eval.map(e -> e.getType().name()).orElse("N/A");
+                String matiereName = "N/A";
+                if (eval.isPresent()) {
+                    Optional<Matiere> mat = matiereService.getMatiereById(eval.get().getMatiereId());
+                    if (mat.isPresent())
+                        matiereName = mat.get().getCode();
+                }
+                return new String[] { matiereName + " - " + evalName, String.valueOf(n.getValeur()),
+                        n.getCommentaire() };
+            }).collect(java.util.stream.Collectors.toList());
+
+            new TableRenderer().printTable("Relevé de Notes", headers, rows);
+        }
+        ConsoleInteract.pause();
     }
 
     private void formAddStudent() {
@@ -97,11 +140,15 @@ public class DashboardView {
         e.setEmail(ConsoleInteract.readString("Email"));
         e.setTelephone(ConsoleInteract.readString("Téléphone"));
 
-        try {
-            String dateStr = ConsoleInteract.readString("Date de naissance (YYYY-MM-DD)");
-            e.setDateNaissance(LocalDate.parse(dateStr));
-        } catch (DateTimeParseException ex) {
-            System.out.println(TerminalStyle.RED + "Format de date invalide. Ignoré." + TerminalStyle.RESET);
+        while (true) {
+            try {
+                String dateStr = ConsoleInteract.readString("Date de naissance (YYYY-MM-DD)");
+                e.setDateNaissance(LocalDate.parse(dateStr));
+                break;
+            } catch (DateTimeParseException ex) {
+                System.out.println(TerminalStyle.RED + "   Erreur: Format invalide (Attendu: YYYY-MM-DD). Réessayez."
+                        + TerminalStyle.RESET);
+            }
         }
 
         e.setStatut(Etudiant.Statut.ACTIF);
@@ -153,7 +200,7 @@ public class DashboardView {
         String[] headers = { "ID", "Code", "Libellé", "Coeff" };
         List<String[]> rows = matieres.stream()
                 .map(m -> new String[] {
-                        m.getId().substring(0, 8) + "...",
+                        (m.getId().length() > 8 ? m.getId().substring(0, 8) + "..." : m.getId()),
                         m.getCode(),
                         m.getLibelle(),
                         String.valueOf(m.getCoefficient())
@@ -205,10 +252,13 @@ public class DashboardView {
         String[] headers = { "ID", "Type", "Poids", "Matiere ID" };
         List<String[]> rows = evals.stream()
                 .map(e -> new String[] {
-                        e.getId().substring(0, 8) + "...",
+                        (e.getId().length() > 8 ? e.getId().substring(0, 8) + "..." : e.getId()),
                         e.getType().name(),
                         String.valueOf(e.getPoids()),
-                        e.getMatiereId() != null ? e.getMatiereId().substring(0, 8) + "..." : "N/A"
+                        (e.getMatiereId() != null
+                                ? (e.getMatiereId().length() > 8 ? e.getMatiereId().substring(0, 8) + "..."
+                                        : e.getMatiereId())
+                                : "N/A")
                 })
                 .collect(java.util.stream.Collectors.toList());
         new TableRenderer().printTable("Liste des Évaluations", headers, rows);
@@ -269,15 +319,23 @@ public class DashboardView {
 
         // 2. Find Evaluation
         listEvaluations();
-        String evalIdPart = ConsoleInteract.readString("ID de l'évaluation (premiers caractères suffisent)");
+        String evalIdPart = ConsoleInteract.readString("ID de l'évaluation (premiers caractères)");
         var allEvals = evaluationService.getAllEvaluations();
-        Optional<Evaluation> evalOpt = allEvals.stream().filter(ev -> ev.getId().startsWith(evalIdPart)).findFirst();
+
+        Optional<Evaluation> evalOpt = allEvals.stream()
+                .filter(ev -> ev.getId().startsWith(evalIdPart))
+                .findFirst();
 
         if (evalOpt.isEmpty()) {
             System.out.println(TerminalStyle.RED + "Évaluation introuvable." + TerminalStyle.RESET);
             ConsoleInteract.pause();
             return;
         }
+
+        // Confirm selection
+        Evaluation eval = evalOpt.get();
+        System.out.println(TerminalStyle.CYAN + "   Sélectionné: " + eval.getType() + " (Poids: " + eval.getPoids()
+                + ")" + TerminalStyle.RESET);
 
         // 3. Create Note
         Note note = new Note();
