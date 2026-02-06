@@ -69,6 +69,38 @@ public class ConsoleInteract {
     }
 
     /**
+     * Reads a double input from the user with a prompt.
+     * 
+     * @param prompt The prompt to display
+     * @return The user's input double, or 0.0 if invalid
+     */
+    public static double readDouble(String prompt) {
+        System.out.print(TerminalStyle.GREEN + "➜ " + prompt + ": " + TerminalStyle.RESET);
+        try {
+            String input = scanner.nextLine().trim();
+            return Double.parseDouble(input);
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
+    }
+
+    /**
+     * Reads a float input from the user with a prompt.
+     * 
+     * @param prompt The prompt to display
+     * @return The user's input float, or 0.0f if invalid
+     */
+    public static float readFloat(String prompt) {
+        System.out.print(TerminalStyle.GREEN + "➜ " + prompt + ": " + TerminalStyle.RESET);
+        try {
+            String input = scanner.nextLine().trim();
+            return Float.parseFloat(input);
+        } catch (NumberFormatException e) {
+            return 0.0f;
+        }
+    }
+
+    /**
      * Closes the scanner resource.
      * Should be called when the application exits.
      */

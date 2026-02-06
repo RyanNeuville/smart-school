@@ -7,7 +7,7 @@ public class Matiere {
     private String id;
     private String code;
     private String libelle;
-    private String coefficient;
+    private Integer coefficient;
     private String description;
 
     /*
@@ -16,7 +16,7 @@ public class Matiere {
     public Matiere() {
     }
 
-    public Matiere(String id, String code, String libelle, String coefficient, String description) {
+    public Matiere(String id, String code, String libelle, Integer coefficient, String description) {
         this.id = id;
         this.code = code;
         this.libelle = libelle;
@@ -51,11 +51,11 @@ public class Matiere {
         this.libelle = libelle;
     }
 
-    public String getCoefficient() {
+    public Integer getCoefficient() {
         return coefficient;
     }
 
-    public void setCoefficient(String coefficient) {
+    public void setCoefficient(Integer coefficient) {
         this.coefficient = coefficient;
     }
 
