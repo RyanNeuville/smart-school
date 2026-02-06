@@ -27,6 +27,15 @@ public class EtudiantService {
     }
 
     /**
+     * Retrieves all students.
+     * 
+     * @return List of all students.
+     */
+    public List<Etudiant> getAllEtudiants() {
+        return etudiantDAO.findAll();
+    }
+
+    /**
      * Retrieves the profile of a student by their matricule.
      * 
      * @param matricule The matricule of the student.

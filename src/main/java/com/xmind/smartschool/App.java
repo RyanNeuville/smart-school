@@ -1,32 +1,72 @@
 package com.xmind.smartschool;
 
+import com.xmind.smartschool.services.EtudiantService;
+import com.xmind.smartschool.view.ConsoleInteract;
+import com.xmind.smartschool.view.StudentProfileView;
+import com.xmind.smartschool.view.TerminalStyle;
+
+import java.util.Optional;
+
 /**
- * Hello world!
+ * Main application class.
  */
 public class App {
+    private static final EtudiantService etudiantService = new EtudiantService();
+    private static final StudentProfileView studentView = new StudentProfileView();
+
     public static void main(String[] args) {
-        System.out.println("Starting Smart School...");
+        boolean running = true;
 
-        com.xmind.smartschool.services.EtudiantService service = new com.xmind.smartschool.services.EtudiantService();
-        com.xmind.smartschool.view.StudentProfileView view = new com.xmind.smartschool.view.StudentProfileView();
+        while (running) {
+            ConsoleInteract.printHeader("SMART SCHOOL MANAGEMENT SYSTEM");
 
-        // Hardcoded matricule for demonstration - In a real app, this would come from
-        // args or user input
-        String matriculeToCheck = "2024001";
+            System.out.println(TerminalStyle.BOLD + "1." + TerminalStyle.RESET + " Lister tous les étudiants");
+            System.out.println(TerminalStyle.BOLD + "2." + TerminalStyle.RESET + " Rechercher un étudiant (Matricule)");
+            System.out.println(TerminalStyle.BOLD + "3." + TerminalStyle.RESET + " Quitter");
+            System.out.println();
 
-        if (args.length > 0) {
-            matriculeToCheck = args[0];
+            int choice = ConsoleInteract.readInt("Votre choix");
+
+            switch (choice) {
+                case 1:
+                    listAllStudents();
+                    break;
+                case 2:
+                    searchStudent();
+                    break;
+                case 3:
+                    running = false;
+                    System.out.println("\n" + TerminalStyle.GREEN + "Au revoir!" + TerminalStyle.RESET);
+                    break;
+                default:
+                    System.out.println("\n" + TerminalStyle.RED + "Choix invalide." + TerminalStyle.RESET);
+                    ConsoleInteract.pause();
+            }
         }
+        ConsoleInteract.close();
+    }
 
-        System.out.println("Fetching profile for matricule: " + matriculeToCheck);
+    private static void listAllStudents() {
+        ConsoleInteract.printHeader("LISTE DES ÉTUDIANTS");
+        var students = etudiantService.getAllEtudiants();
+        studentView.displayStudentList(students);
+        ConsoleInteract.pause();
+    }
 
-        var profileOpt = service.getEtudiantProfile(matriculeToCheck);
+    private static void searchStudent() {
+        ConsoleInteract.printHeader("RECHERCHE ÉTUDIANT");
+        String matricule = ConsoleInteract.readString("Entrez le matricule");
+
+        System.out.println("\nRecherche en cours...");
+        var profileOpt = etudiantService.getEtudiantProfile(matricule);
 
         if (profileOpt.isPresent()) {
-            view.displayStudent(profileOpt.get());
+            ConsoleInteract.clearScreen();
+            studentView.displayStudent(profileOpt.get());
         } else {
-            System.out.println("Student not found for matricule: " + matriculeToCheck);
-            System.out.println("Please check the database or provide a valid matricule as an argument.");
+            System.out.println("\n" + TerminalStyle.RED + "Aucun étudiant trouvé avec le matricule: " + matricule
+                    + TerminalStyle.RESET);
         }
+        ConsoleInteract.pause();
     }
 }
