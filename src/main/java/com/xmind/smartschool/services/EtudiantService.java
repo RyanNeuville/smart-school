@@ -27,6 +27,18 @@ public class EtudiantService {
     }
 
     /**
+     * Creates a new student.
+     * 
+     * @param etudiant The student to create.
+     */
+    public void createEtudiant(Etudiant etudiant) {
+        if (etudiant.getId() == null || etudiant.getId().isEmpty()) {
+            etudiant.setId(java.util.UUID.randomUUID().toString());
+        }
+        etudiantDAO.save(etudiant);
+    }
+
+    /**
      * Retrieves all students.
      * 
      * @return List of all students.

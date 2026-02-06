@@ -11,4 +11,6 @@ public interface IEtudiantDAO {
     Optional<Etudiant> findByMatricule(String matricule);
 
     List<Etudiant> findAll();
+
+    void save(Etudiant etudiant);
 }

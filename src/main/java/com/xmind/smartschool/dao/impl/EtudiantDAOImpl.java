@@ -55,6 +55,40 @@ public class EtudiantDAOImpl implements IEtudiantDAO {
         return etudiants;
     }
 
+    @Override
+    public void save(Etudiant etudiant) {
+        String query = "INSERT INTO etudiants (id, matricule, nom, prenom, date_naissance, email, telephone, statut) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+                PreparedStatement pstmt = connection.prepareStatement(query)) {
+
+            pstmt.setString(1, etudiant.getId());
+            pstmt.setString(2, etudiant.getMatricule());
+            pstmt.setString(3, etudiant.getNom());
+            pstmt.setString(4, etudiant.getPrenom());
+
+            if (etudiant.getDateNaissance() != null) {
+                pstmt.setDate(5, java.sql.Date.valueOf(etudiant.getDateNaissance()));
+            } else {
+                pstmt.setDate(5, null);
+            }
+
+            pstmt.setString(6, etudiant.getEmail());
+            pstmt.setString(7, etudiant.getTelephone());
+
+            if (etudiant.getStatut() != null) {
+                pstmt.setString(8, etudiant.getStatut().name());
+            } else {
+                pstmt.setString(8, "ACTIF"); // Default
+            }
+
+            pstmt.executeUpdate();
+            System.out.println("Etudiant saved successfully!");
+        } catch (SQLException e) {
+            System.err.println("Error saving etudiant: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     private Etudiant mapResultSetToEtudiant(ResultSet rs) throws SQLException {
         Etudiant etudiant = new Etudiant();
         etudiant.setId(rs.getString("id"));
