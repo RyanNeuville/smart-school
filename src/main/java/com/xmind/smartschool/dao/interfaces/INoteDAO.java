@@ -8,4 +8,6 @@ import java.util.List;
  */
 public interface INoteDAO {
     List<Note> findByEtudiantId(String etudiantId);
+
+    void save(Note note);
 }

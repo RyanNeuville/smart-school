@@ -17,7 +17,7 @@ public class Evaluation {
     private String id;
     private EvaluationType type;
     private Float poids;
-    private Long matiereId;
+    private String matiereId;
 
     /*
      * Constructors to create a new Evaluation object.
@@ -25,7 +25,7 @@ public class Evaluation {
     public Evaluation() {
     }
 
-    public Evaluation(String id, EvaluationType type, Float poids, Long matiereId) {
+    public Evaluation(String id, EvaluationType type, Float poids, String matiereId) {
         this.id = id;
         this.type = type;
         this.poids = poids;
@@ -59,11 +59,11 @@ public class Evaluation {
         this.poids = poids;
     }
 
-    public Long getMatiereId() {
+    public String getMatiereId() {
         return matiereId;
     }
 
-    public void setMatiereId(Long matiereId) {
+    public void setMatiereId(String matiereId) {
         this.matiereId = matiereId;
     }
 

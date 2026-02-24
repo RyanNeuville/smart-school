@@ -19,7 +19,7 @@ public class NoteDAOImpl implements INoteDAO {
     @Override
     public List<Note> findByEtudiantId(String etudiantId) {
         List<Note> notes = new ArrayList<>();
-        String query = "SELECT * FROM note WHERE etudiant_id = ?";
+        String query = "SELECT * FROM notes WHERE etudiant_id = ?";
         try (Connection connection = DatabaseConnection.getInstance().getConnection();
                 PreparedStatement pstmt = connection.prepareStatement(query)) {
 
@@ -34,6 +34,41 @@ public class NoteDAOImpl implements INoteDAO {
             e.printStackTrace();
         }
         return notes;
+    }
+
+    @Override
+    public void save(Note note) {
+        String query = "INSERT INTO notes (id, valeur, commentaire, date_saisie, etudiant_id, evaluation_id) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection connection = DatabaseConnection.getInstance().getConnection();
+                PreparedStatement pstmt = connection.prepareStatement(query)) {
+
+            pstmt.setString(1, note.getId());
+
+            if (note.getValeur() != null) {
+                pstmt.setDouble(2, note.getValeur());
+            } else {
+                pstmt.setNull(2, java.sql.Types.DECIMAL);
+            }
+
+            pstmt.setString(3, note.getCommentaire());
+
+            if (note.getDateSaisie() != null) {
+                // Conversion from LocalDate to Timestamp for compatibility with database.sql
+                // (TIMESTAMP)
+                // or just set Date if driver supports
+                pstmt.setTimestamp(4, java.sql.Timestamp.valueOf(note.getDateSaisie().atStartOfDay()));
+            } else {
+                pstmt.setTimestamp(4, new java.sql.Timestamp(System.currentTimeMillis()));
+            }
+
+            pstmt.setString(5, note.getEtudiantId());
+            pstmt.setString(6, note.getEvaluationId());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error saving note: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private Note mapResultSetToNote(ResultSet rs) throws SQLException {
